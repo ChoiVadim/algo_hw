@@ -1,4 +1,6 @@
+# UID: 2022203502 최바딤
 import pytest
+from collections import deque
 
 from method1 import divide_array
 from method2 import divide_students
@@ -125,5 +127,5 @@ def test_method1(arr, res):
 def test_method2(arr, res):
     arr = arr.split()
     arr = [(i, int(j)) for i, j in enumerate(arr, 1)]
-
-    assert divide_students(arr, 3)[0] == res
+    deque = [list(d) for d in divide_students(arr, 3)[0]]
+    assert deque == res

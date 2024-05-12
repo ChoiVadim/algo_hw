@@ -1,7 +1,10 @@
+# UID: 2022203502 최바딤
 debug: bool = False
 
 
 def find_max_diff(arr: list[list], k: int) -> int:
+    # Time complexity: O(n) min, max functions
+    # Space complexity: O(1)
     if not arr:
         return
 
@@ -25,18 +28,20 @@ def find_max_diff(arr: list[list], k: int) -> int:
 
 
 def divide_array(arr: list, k: int) -> list[list]:
+    # Time complexity: O(nlogn)
+    # Space complexity: O(n)
     arr.sort(reverse=True, key=lambda x: x[1])
 
     if debug:
         print(list)
 
-    final_arr = []
-    max_diff = 0
-    max_diff_index = -1
-    temp_arr = arr
+    final_arr: list = []
+    temp_arr: list = []
+    max_diff: int = 0
+    max_diff_index: int = -1
 
     for i in range(k - 1):
-        temp_arr = temp_arr[max_diff_index + 1 :]
+        temp_arr = arr[max_diff_index + 1 :]
         arr_len = len(temp_arr)
 
         for i in range(0, arr_len - 1):
@@ -46,10 +51,10 @@ def divide_array(arr: list, k: int) -> list[list]:
                 max_diff = diff
                 max_diff_index = i
 
-        final_arr.append(temp_arr[: max_diff_index + 1])
         max_diff = 0
+        final_arr.append(temp_arr[: max_diff_index + 1])
 
-    final_arr.extend([temp_arr[max_diff_index + 1 :]])
+    final_arr.append(temp_arr[max_diff_index + 1 :])
 
     if debug:
         print("\n")
